@@ -8,7 +8,7 @@ module.exports = {
 	entry: NODE_ENV === 'development' ? './src/main.js' : './index.js',
 	output: {
 		path: path.resolve(__dirname, './dist'),
-		filename: 'vue-questionnaire-create.js',
+		filename: `${$pkg.name}.js`,
 		publicPath: '/dist/',
 		library: $pkg.name,
 		libraryTarget: 'umd',
@@ -17,7 +17,7 @@ module.exports = {
 	// 剔除掉一些通用包,自己的包不打包这些类库,需要用户环境来提供
 	externals: {
 		vue: 'vue',
-		elementUi: 'element-ui',
+		'element-ui': 'element-ui',
 		axios: 'axios'
 	},
 	module: {

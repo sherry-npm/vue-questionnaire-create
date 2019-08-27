@@ -2,7 +2,7 @@
   "name": "vue-questionnaire-create",
   "description": "管理端问卷创建组件（vue）",
   "version": "0.0.1",
-  "author": "shryzhang <996707719@qq.com>",
+  "author": "Sherry <996707719@qq.com>",
   "license": "MIT",
   "private": false,
   "main": "./dist/vue-questionnaire-create.js",
