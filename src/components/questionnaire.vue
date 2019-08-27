@@ -1,8 +1,3 @@
-<!--
-	componentName: questionnaire - 问卷录入组件
-	author: shryzhang
-	date: 2019.7.14
--->
 <template lang="pug">
 draggable.v-questionnaire(
 	v-model="draggerList"
@@ -64,7 +59,7 @@ import $draggerText from './text';
 import $icons from '../assets/index';
 
 export default {
-  name: 'vue-questionnaire',
+	name: 'vue-questionnaire-create',
 	props: {
 		data: {
 			type: Array,
@@ -188,11 +183,11 @@ export default {
 				const choiceMaxLength = rule.choiceNumRange[1];
 				const choiceTextMinLength = rule.choiceTextRange[0];
 				const choiceTextMaxLength = rule.choiceTextRange[1];
-				const choices = element.choices;
-				if (element.choices.length > choiceMaxLength) {
+				const choices = element.choices.filter(choice => !choice.is_deleted);
+				if (choices.length > choiceMaxLength) {
 					return `选项请不要多于${choiceMaxLength}个`;
 				}
-				if (element.choices.length < choiceMinLength) {
+				if (choices.length < choiceMinLength) {
 					return `选项请不要少于${choiceMinLength}个`;
 				}
 				// 遍历每个选项，判断文本长度有效性
@@ -204,7 +199,7 @@ export default {
 						return `选项描述请不要多于${choiceTextMaxLength}个字`;
 					}
 				}
-				if (element.type === 2 && (!element.max_answer || element.max_answer < 2 || element.max_answer > element.choices.length)) {
+				if (element.type === 2 && (!element.max_answer || element.max_answer < 2 || element.max_answer > choices.length)) {
 					return '多选题请输入合法的最多答案数';
 				}
 			}

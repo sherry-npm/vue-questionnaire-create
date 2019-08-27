@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import questionnaire from './components/Main'
+import questionnaire from './components/questionnaire'
 
 export default {
   name: 'app',

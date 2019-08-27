@@ -1,21 +1,23 @@
 var path = require('path')
 var webpack = require('webpack')
+const $pkg = require('./package.json');
+
 const NODE_ENV = process.env.NODE_ENV
 
 module.exports = {
 	entry: NODE_ENV === 'development' ? './src/main.js' : './index.js',
 	output: {
 		path: path.resolve(__dirname, './dist'),
+		filename: 'vue-questionnaire-create.js',
 		publicPath: '/dist/',
-		filename: 'vue-questionnaire.js',
-		library: 'vue-questionnaire',
+		library: $pkg.name,
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},
 	// 剔除掉一些通用包,自己的包不打包这些类库,需要用户环境来提供
 	externals: {
 		vue: 'vue',
-		elementUI: 'element-ui',
+		elementUi: 'element-ui',
 		axios: 'axios'
 	},
 	module: {
